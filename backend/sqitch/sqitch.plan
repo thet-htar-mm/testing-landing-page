@@ -1,0 +1,4 @@
+%syntax-version=1.0.0
+%project=test_landing_page
+
+create_blogs_table 2025-09-29T05:27:56Z thethtar <thethtar@mymyeo.com> # Create blogs table
