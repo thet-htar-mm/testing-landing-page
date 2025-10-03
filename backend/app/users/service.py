@@ -1,14 +1,18 @@
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy.future import select
-from .models import User
+from sqlalchemy import text
 
 async def get_users(db: AsyncSession):
-    result = await db.execute(select(User))
-    return result.scalars().all()
+    query = text("SELECT * FROM users")
+    result = await db.execute(query)
+    return result.fetchall()
+
 
 async def create_user(db: AsyncSession, name: str):
-    user = User(name=name)
-    db.add(user)
+    insert_query = text("""
+        INSERT INTO users (name)
+        VALUES (:name)
+        RETURNING *
+    """)
+    result = await db.execute(insert_query, {"name": name})
     await db.commit()
-    await db.refresh(user)
-    return user
+    return result.fetchone()

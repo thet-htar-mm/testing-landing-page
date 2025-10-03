@@ -2,3 +2,6 @@
 __pycache__
 landing_env
 .env
+.dockerignore
+.DS_Store
+readme.md

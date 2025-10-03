@@ -1,28 +1,3 @@
-<!-- <script lang="ts">
-
-  interface User {
-    id: number;
-    name: string;
-  }
-  let users: User[] = [];
-  let name = '';
-
-  const apiUrl = import.meta.env.VITE_API_URL;
-
-  async function fetchUsers() {
-    const res = await fetch(`${apiUrl}/users`);
-    users = await res.json();
-  }
-
-  async function addUser() {
-    await fetch(`${apiUrl}/users?name=` + name, { method: 'POST' });
-    name = '';
-    await fetchUsers();
-  }
-
-  fetchUsers();
-</script> -->
-
 <script lang="ts">
   import { onMount } from 'svelte';
 

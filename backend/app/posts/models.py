@@ -1,9 +1,8 @@
-from sqlalchemy import Column, Integer, String, ForeignKey
-from ..database import Base
+from pydantic import BaseModel
+from ..users.models import UserOut
 
-class Post(Base):
-    __tablename__ = 'posts'
-    id = Column(Integer, primary_key=True, index=True)
-    title = Column(String)
-    content = Column(String)
-    user_id = Column(Integer, ForeignKey("users.id"))
+class PostOut(BaseModel):
+    id: int
+    title: str
+    content: str
+    user: UserOut
