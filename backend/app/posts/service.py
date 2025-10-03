@@ -1,5 +1,6 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import text
+from .schemas import PostCreate
 
 async def get_posts(db: AsyncSession):
     query = text("""
@@ -29,7 +30,7 @@ async def get_posts(db: AsyncSession):
         posts.append(post_dict)
     return posts
 
-async def create_post(db: AsyncSession, title: str, content: str, user_id: int):
+async def create_post(db: AsyncSession, post: PostCreate):
     insert_query = text("""
         INSERT INTO posts (title, content, user_id)
         VALUES (:title, :content, :user_id)
@@ -37,9 +38,9 @@ async def create_post(db: AsyncSession, title: str, content: str, user_id: int):
     """)
     
     result = await db.execute(insert_query, {
-        "title": title,
-        "content": content,
-        "user_id": user_id
+        "title": post.title,
+        "content": post.content,
+        "user_id": post.user_id
     })
 
     await db.commit()

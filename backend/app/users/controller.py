@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 from ..database import SessionLocal
 from . import service
-from .models import UserOut
+from .schemas import UserOut
 from typing import List
 
 router = APIRouter(prefix="/users", tags=["users"])
